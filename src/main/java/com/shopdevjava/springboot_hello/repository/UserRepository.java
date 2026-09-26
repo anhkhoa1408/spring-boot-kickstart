@@ -2,6 +2,8 @@ package com.shopdevjava.springboot_hello.repository;
 
 import com.shopdevjava.springboot_hello.entities.user.UserEntity;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
@@ -12,7 +14,7 @@ import java.util.List;
 //@RepositoryDefinition(domainClass = UserEntity.class, idClass = Long.class)
 //@Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
-    UserEntity findByUserName(String userName);
+    Page<UserEntity> findByUserName(String userName, Pageable pageable);
 
     UserEntity findByUserEmailEndingWith(String userEmail);
 
